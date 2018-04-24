@@ -99,3 +99,78 @@ void quicksort(std::string arr[], int l, int r){
     quicksort(arr, l, j);
     quicksort(arr, j, r);
 }
+void quicksortPlus(std::string arr[], int l, int r){
+    if(r-l<=10){
+        insertionsort(arr, l, r);
+    }
+    //pivot picking
+    string low = arr[l];
+    string mid = arr[(l+r)/2];
+    string high = arr[r];
+    string median;
+    int medlocation;
+    
+    //low mid
+    if(low.compare(mid)<=0){
+        if(mid.compare(high)<=0){
+            //low mid high
+            medlocation = l+r;
+        }else{
+            if(low.compare(high)<=0){
+                //low high mid
+                medlocation = r;
+            }else{
+                //high low min
+                medlocation = l;
+            }
+        }
+    //mid low
+    }else{
+        if(low.compare(high)<=0){
+            //mid low high
+            medlocation = l;
+        }else{
+            if(mid.compare(high)<=0){
+                //mid high low
+                medlocation = r;
+            }else{
+                //high mid low
+                medlocation = l+r;
+            }
+        }
+    }
+    
+    median = arr[medlocation];
+    string temp = arr[medlocation];
+    arr[medlocation] = arr[l];
+    arr[l] = temp;
+
+    
+    int i = l;
+    int j = r+1;
+    
+    do{
+        do{
+            i++;
+        }while(arr[i].compare(partString) > 0);
+        
+        do{
+            j--;
+        }while(arr[j].compare(partString) <= 0);
+        
+        string temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }while(i>=j);
+    
+    string temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+    
+    string temp = arr[l];
+    arr[l] = arr[j];
+    arr[j] = temp;
+    
+    quicksort(arr, l, j);
+    quicksort(arr, j, r); 
+}
