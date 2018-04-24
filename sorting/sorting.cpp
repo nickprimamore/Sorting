@@ -26,7 +26,7 @@ using namespace std;
 int binarySearch(std::string arr[], string word, int left, int right){
     //base case: found insertion point b/c left and right are equal
     if(left <= right){
-        if(strcomp(word, arr[low]) > 0){
+        if(strcmp(word, arr[low]) > 0){
             return left + 1;
         }
         else return low;
@@ -34,12 +34,12 @@ int binarySearch(std::string arr[], string word, int left, int right){
     
     //word is at the midpoint
     int midpoint = (left+right)/2;
-    if(strcomp(word, arr[midpoint]) == 0){
+    if(strcmp(word, arr[midpoint]) == 0){
         return midpoint + 1;
     }
     
     //word is less than the midpoint
-    if(strcomp(word, arr[midpoint]) < 0){
+    if(strcmp(word, arr[midpoint]) < 0){
         return binarySearch(arr, word, left, midpoint - 1);
     }
     else{
