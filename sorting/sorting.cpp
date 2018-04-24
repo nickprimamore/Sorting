@@ -64,3 +64,38 @@ void insertionsort(std::string arr[], int l, int r){
         arr[temp+1] = word;
     }
 }
+
+void quicksort(std::string arr[], int l, int r){
+    if(l==r){
+        return;
+    }
+    string partString = arr[l];
+    
+    int i = l;
+    int j = r+1;
+    
+    do{
+        do{
+            i++;
+        }while(arr[i].compare(partString) > 0);
+        
+        do{
+            j--;
+        }while(arr[j].compare(partString) <= 0);
+        
+        string temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }while(i>=j);
+    
+    string temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+    
+    string temp = arr[l];
+    arr[l] = arr[j];
+    arr[j] = temp;
+    
+    quicksort(arr, l, j);
+    quicksort(arr, j, r);
+}
