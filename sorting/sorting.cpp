@@ -177,3 +177,45 @@ void quicksortPlus(std::string arr[], int l, int r){
     quicksort(arr, l, j);
     quicksort(arr, j, r); 
 }
+
+/* Assume arr has length at least len.
+ * For each of the three sort functions, run it 10 times on arr, and print the total time
+ * for each of the three functions in a format simlar to the one below:
+ * (it doesn't need to be identical to the below output or in the same order as below,
+ *  but it should print the sort name, total time, and time per each iteration)
+ QuickSort: 100ms total, 5ms per iteration
+ QuickSortPlus: 80ms total, 4ms per iteration
+ Insertion Sort: 600ms total, 30ms per iteration
+ 
+ * Reference sortTimeDemo for an example of using timings.
+ */
+void compareSorts(std::string arr[], int len){
+    //Insertion Sort:
+    clock_t insertionStart = clock();
+    for(int i = 0; i < 10; i++){
+        insertionsort(arr, 0, len);
+    }
+    clock_t insertionEnd = clock();
+    double insertionTime = ((double)(insertionEnd - insertionStart)) / CLOCKS_PER_SEC;
+    printf("Insertion Sort: %f seconds total, %f seconds per iteration.\n", insertionTime, insertionTime/10);
+    
+    
+    //Quick Sort:
+    clock_t quickStart = clock();
+    for(int i = 0; i < 10; i++){
+        quicksort(arr, 0, len);
+    }
+    clock_t quickEnd = clock();
+    double quickTime = ((double)(quickEnd - quickStart)) / CLOCKS_PER_SEC;
+    printf("Quick Sort: %f seconds total, %f seconds per iteration.\n", quickTime, quickTime/10);
+    
+    
+    //Quick Sort Plus:
+    clock_t quickPlusStart = clock();
+    for(int i = 0; i < 10; i++){
+        quicksortPlus(arr, 0, len);
+    }
+    clock_t quickPlusEnd = clock();
+    double quickPlusTime = ((double)(quickPlusEnd - quickPlusStart)) / CLOCKS_PER_SEC;
+    printf("Quick Sort Plus: %f seconds total, %f seconds per iteration.\n", quickPlusTime, quickPlusTime/10);
+}
