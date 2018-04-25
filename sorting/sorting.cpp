@@ -106,7 +106,7 @@ void quicksortPlus(std::string arr[], int l, int r){
     //pivot picking
     string low = arr[l];
     string mid = arr[(l+r)/2];
-    string high = arr[r];
+    string high = arr[r-1];
     string median;
     int medlocation;
     
@@ -118,7 +118,7 @@ void quicksortPlus(std::string arr[], int l, int r){
         }else{
             if(low.compare(high)<=0){
                 //low high mid
-                medlocation = r;
+                medlocation = r-1;
             }else{
                 //high low min
                 medlocation = l;
@@ -132,7 +132,7 @@ void quicksortPlus(std::string arr[], int l, int r){
         }else{
             if(mid.compare(high)<=0){
                 //mid high low
-                medlocation = r;
+                medlocation = r-1;
             }else{
                 //high mid low
                 medlocation = l+r;
