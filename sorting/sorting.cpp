@@ -1,8 +1,8 @@
 /********************************************************************
  "I pledge my honor that I have abided by the Stevens Honor System."
-  Nicholas Primamore and Matthew Monaco
+ Nicholas Primamore and Matthew Monaco
  
-  sorting.cpp
+ sorting.cpp
  *******************************************************************/
 
 #include "sorting.hpp"
@@ -29,7 +29,7 @@ using namespace std;
 int binarySearch(std::string arr[], string word, int left, int right){
     //base case: found insertion point b/c left and right are equal
     if(left <= right){
-        if(strcmp(word, arr[low]) > 0){
+        if(word.compare(arr[left]) > 0){
             return left + 1;
         }
         else return left;
@@ -37,12 +37,12 @@ int binarySearch(std::string arr[], string word, int left, int right){
     
     //word is at the midpoint
     int midpoint = (left+right)/2;
-    if(strcmp(word, arr[midpoint]) == 0){
+    if(word.compare(arr[midpoint]) == 0){
         return midpoint + 1;
     }
     
     //word is less than the midpoint
-    if(strcmp(word, arr[midpoint]) < 0){
+    if(word.compare(arr[midpoint]) < 0){
         return binarySearch(arr, word, left, midpoint - 1);
     }
     else{
@@ -127,7 +127,7 @@ void quicksortPlus(std::string arr[], int l, int r){
                 medlocation = l;
             }
         }
-    //mid low
+        //mid low
     }else{
         if(low.compare(high)<=0){
             //mid low high
@@ -147,7 +147,7 @@ void quicksortPlus(std::string arr[], int l, int r){
     string temp = arr[medlocation];
     arr[medlocation] = arr[l];
     arr[l] = temp;
-
+    
     
     int i = l;
     int j = r+1;
@@ -175,7 +175,7 @@ void quicksortPlus(std::string arr[], int l, int r){
     arr[j] = temp;
     
     quicksort(arr, l, j);
-    quicksort(arr, j, r); 
+    quicksort(arr, j, r);
 }
 
 /* Assume arr has length at least len.
