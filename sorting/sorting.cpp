@@ -29,7 +29,7 @@ int binarySearch(std::string arr[], string word, int left, int right){
         if(strcmp(word, arr[low]) > 0){
             return left + 1;
         }
-        else return low;
+        else return left;
     }
     
     //word is at the midpoint
