@@ -52,7 +52,7 @@ int binarySearch(std::string arr[], string word, int left, int right){
 }
 
 void insertionsort(std::string arr[], int l, int r){
-    for(int index = l; index < r; index++){
+    for(int index = l+1; index < r; index++){
         int temp = index - 1; // we care about words to the left of current position
         string word = arr[index];
         int insertionPoint = binarySearch(arr, word, l, r);
