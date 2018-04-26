@@ -1,0 +1,19 @@
+/********************************************************************
+ "I pledge my honor that I have abided by the Stevens Honor System."
+ Nicholas Primamore and Matthew Monaco
+ 
+ compareSorts() Output
+ *******************************************************************/
+
+testing file  statesContig.txt ...
+Insertion Sort: 0.002577 seconds total, 0.000258 seconds per iteration.
+Quick Sort: 0.001120 seconds total, 0.000112 seconds per iteration.
+Quick Sort Plus: 0.001007 seconds total, 0.000101 seconds per iteration.
+testing file  3esl.txt ...
+Insertion Sort: 2.626243 seconds total, 0.262624 seconds per iteration.
+Quick Sort: 0.128722 seconds total, 0.012872 seconds per iteration.
+Quick Sort Plus: 0.095514 seconds total, 0.009551 seconds per iteration.
+testing file  chromosome4.txt ...
+Insertion Sort: 2060.544542 seconds total, 206.054454 seconds per iteration.
+Quick Sort: 1.257442 seconds total, 0.125744 seconds per iteration.
+Quick Sort Plus: 1.077959 seconds total, 0.107796 seconds per iteration.
