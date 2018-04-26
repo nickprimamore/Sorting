@@ -185,11 +185,21 @@ void quicksortPlus(std::string arr[], int l, int r){
  
  * Reference sortTimeDemo for an example of using timings.
  */
-void compareSorts(std::string arr[], int len){
+
+ void compareSorts(std::string arr[], int len){
+    std::string* original = new std::string[len];
+    std::string* copy = new std::string[len];
+    for(int i = 0; i < len; i++){
+        original[i] = arr[i];
+    }
+    
     //Insertion Sort:
     clock_t insertionStart = clock();
     for(int i = 0; i < 10; i++){
-        insertionsort(arr, 0, len);
+        for(int j = 0; j < len; j++){
+            copy[j] = original[j];
+        }
+        insertionsort(copy, 0, len);
     }
     clock_t insertionEnd = clock();
     double insertionTime = ((double)(insertionEnd - insertionStart)) / CLOCKS_PER_SEC;
@@ -199,7 +209,10 @@ void compareSorts(std::string arr[], int len){
     //Quick Sort:
     clock_t quickStart = clock();
     for(int i = 0; i < 10; i++){
-        quicksort(arr, 0, len);
+        for(int j = 0; j < len; j++){
+            copy[j] = original[j];
+        }
+        quicksort(copy, 0, len);
     }
     clock_t quickEnd = clock();
     double quickTime = ((double)(quickEnd - quickStart)) / CLOCKS_PER_SEC;
@@ -209,9 +222,15 @@ void compareSorts(std::string arr[], int len){
     //Quick Sort Plus:
     clock_t quickPlusStart = clock();
     for(int i = 0; i < 10; i++){
-        quicksortPlus(arr, 0, len);
+        for(int j = 0; j < len; j++){
+            copy[j] = original[j];
+        }
+        quicksortPlus(copy, 0, len);
     }
     clock_t quickPlusEnd = clock();
     double quickPlusTime = ((double)(quickPlusEnd - quickPlusStart)) / CLOCKS_PER_SEC;
     printf("Quick Sort Plus: %f seconds total, %f seconds per iteration.\n", quickPlusTime, quickPlusTime/10);
-}
+    
+    delete [] original;
+    delete [] copy;
+}  
