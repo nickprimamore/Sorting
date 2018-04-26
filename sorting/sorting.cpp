@@ -28,7 +28,7 @@ using namespace std;
  */
 int binarySearch(std::string arr[], string word, int left, int right){
     //base case: found insertion point b/c left and right are equal
-    if(left <= right){
+    if(left >= right){
         if(word.compare(arr[left]) > 0){
             return left + 1;
         }
@@ -55,7 +55,7 @@ void insertionsort(std::string arr[], int l, int r){
     for(int index = l+1; index < r; index++){
         int temp = index - 1; // we care about words to the left of current position
         string word = arr[index];
-        int insertionPoint = binarySearch(arr, word, l, r);
+        int insertionPoint = binarySearch(arr, word, l, temp);
         
         //shifting strings
         while(temp >= insertionPoint){
@@ -65,9 +65,9 @@ void insertionsort(std::string arr[], int l, int r){
         
         //putting the current word in correct position
         arr[temp+1] = word;
-    }
+    } 
 }
-
+   
 void quicksort(std::string arr[], int l, int r){
     if(l==r){
         return;
