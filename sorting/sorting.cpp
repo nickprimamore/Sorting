@@ -67,9 +67,9 @@ void insertionsort(std::string arr[], int l, int r){
         arr[temp+1] = word;
     } 
 }
-   
+
 void quicksort(std::string arr[], int l, int r){
-    if(l>=r){
+    if(l>=r-1){
         return;
     }
     string partString = arr[l];
@@ -101,78 +101,77 @@ void quicksort(std::string arr[], int l, int r){
     quicksort(arr, j+1, r);
 }
 void quicksortPlus(std::string arr[], int l, int r){
-    printf("chekc\n");
     if(r-l<=10){
-        printf("chekc\n");
         insertionsort(arr, l, r);
-    }
-    //pivot picking
-    string low = arr[l];
-    string mid = arr[(l+r)/2];
-    string high = arr[r-1];
-    string median;
-    int medlocation;
-    
-    //low mid
-    if(low<=mid){
-        if(mid.compare(high)<=0){
-            //low mid high
-            medlocation = (l+r)/2;
+    }else{
+        //pivot picking
+        string low = arr[l];
+        string mid = arr[(l+r)/2];
+        string high = arr[r-1];
+        string median;
+        int medlocation;
+
+        //low mid
+        if(low<=mid){
+            if(mid.compare(high)<=0){
+                //low mid high
+                medlocation = (l+r)/2;
+            }else{
+                if(low.compare(high)<=0){
+                    //low high mid
+                    medlocation = r-1;
+                }else{
+                    //high low min
+                    medlocation = l;
+                }
+            }
+            //mid low
         }else{
             if(low.compare(high)<=0){
-                //low high mid
-                medlocation = r-1;
-            }else{
-                //high low min
+                //mid low high
                 medlocation = l;
-            }
-        }
-        //mid low
-    }else{
-        if(low.compare(high)<=0){
-            //mid low high
-            medlocation = l;
-        }else{
-            if(mid.compare(high)<=0){
-                //mid high low
-                medlocation = r-1;
             }else{
-                //high mid low
-                medlocation = (l+r)/2;
+                if(mid.compare(high)<=0){
+                    //mid high low
+                    medlocation = r-1;
+                }else{
+                    //high mid low
+                    medlocation = (l+r)/2;
+                }
             }
         }
-    }
 
-    median = arr[medlocation];
-    string temp = arr[medlocation];
-    arr[medlocation] = arr[l];
-    arr[l] = temp;
-    
-    
-    int i = l;
-    int j = r;
-    
-    do{
+        median = arr[medlocation];
+        string temp = arr[medlocation];
+        arr[medlocation] = arr[l];
+        arr[l] = temp;
+
+
+        int i = l;
+        int j = r;
+
         do{
-            i++;
-        }while(i<r-1 && arr[i]<median);
-        do{
-            j--;
-        }while(j>l && arr[j]>=median);
+            do{
+                i++;
+            }while(i<r-1 && arr[i]<median);
+            do{
+                j--;
+            }while(j>l && arr[j]>=median);
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+
+        }while(i<j);
+
         temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-
-    }while(i<j);
-    
-    temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-    temp = arr[l];
-    arr[l] = arr[j];
-    arr[j] = temp;
-    quicksortPlus(arr, l, j);
-    quicksortPlus(arr, j+1, r);
+        temp = arr[l];
+        arr[l] = arr[j];
+        arr[j] = temp;
+        quicksortPlus(arr, l, j);
+        quicksortPlus(arr, j+1, r);
+    }
 }
 
 /* Assume arr has length at least len.
