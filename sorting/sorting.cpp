@@ -69,41 +69,41 @@ void insertionsort(std::string arr[], int l, int r){
 }
    
 void quicksort(std::string arr[], int l, int r){
-    if(l==r){
+    if(l>=r){
         return;
     }
     string partString = arr[l];
-    
+    string temp;
     int i = l;
-    int j = r+1;
+    int j = r;
     
     do{
         do{
             i++;
-        }while(arr[i].compare(partString) > 0);
-        
+        }while(i<r-1 && arr[i]<partString);
         do{
             j--;
-        }while(arr[j].compare(partString) <= 0);
-        
-        string temp = arr[i];
+        }while(j>l && arr[j]>=partString);
+        temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-    }while(i>=j);
-    
-    string temp = arr[i];
+
+    }while(i<j);
+
+    temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
     
-    string temp = arr[l];
+    temp = arr[l];
     arr[l] = arr[j];
     arr[j] = temp;
-    
     quicksort(arr, l, j);
-    quicksort(arr, j, r);
+    quicksort(arr, j+1, r);
 }
 void quicksortPlus(std::string arr[], int l, int r){
+    printf("chekc\n");
     if(r-l<=10){
+        printf("chekc\n");
         insertionsort(arr, l, r);
     }
     //pivot picking
@@ -114,10 +114,10 @@ void quicksortPlus(std::string arr[], int l, int r){
     int medlocation;
     
     //low mid
-    if(low.compare(mid)<=0){
+    if(low<=mid){
         if(mid.compare(high)<=0){
             //low mid high
-            medlocation = l+r;
+            medlocation = (l+r)/2;
         }else{
             if(low.compare(high)<=0){
                 //low high mid
@@ -138,11 +138,11 @@ void quicksortPlus(std::string arr[], int l, int r){
                 medlocation = r-1;
             }else{
                 //high mid low
-                medlocation = l+r;
+                medlocation = (l+r)/2;
             }
         }
     }
-    
+
     median = arr[medlocation];
     string temp = arr[medlocation];
     arr[medlocation] = arr[l];
@@ -150,32 +150,29 @@ void quicksortPlus(std::string arr[], int l, int r){
     
     
     int i = l;
-    int j = r+1;
+    int j = r;
     
     do{
         do{
             i++;
-        }while(arr[i].compare(partString) > 0);
-        
+        }while(i<r-1 && arr[i]<median);
         do{
             j--;
-        }while(arr[j].compare(partString) <= 0);
-        
-        string temp = arr[i];
+        }while(j>l && arr[j]>=median);
+        temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-    }while(i>=j);
+
+    }while(i<j);
     
-    string temp = arr[i];
+    temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
-    
-    string temp = arr[l];
+    temp = arr[l];
     arr[l] = arr[j];
     arr[j] = temp;
-    
-    quicksort(arr, l, j);
-    quicksort(arr, j, r);
+    quicksortPlus(arr, l, j);
+    quicksortPlus(arr, j+1, r);
 }
 
 /* Assume arr has length at least len.
